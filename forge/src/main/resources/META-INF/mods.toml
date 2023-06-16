@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "[${forge_version},)"
+issueTrackerURL = "https://github.com/IThundxr/oldmclogo/issues"
+license = "BY-NC-SA"
+
+[[mods]]
+modId = "oldmclogo"
+version = "${version}"
+displayName = "Old MC Logo"
+authors = "IThundxr"
+description = '''
+Brings back the old MC logo!
+'''
+logoFile = "assets/oldmclogo/icon.png"
+
+[[dependencies.oldmclogo]]
+modId = "forge"
+mandatory = true
+versionRange = "[${forge_version},)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.oldmclogo]]
+modId = "minecraft"
+mandatory = true
+versionRange = "${minecraft_version}"
+ordering = "NONE"
+side = "CLIENT"

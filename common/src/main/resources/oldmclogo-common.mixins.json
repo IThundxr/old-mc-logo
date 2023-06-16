@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "dev.ithundxr.mods.oldmclogo.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+    "MixinMinecraft",
+    "MixinIconSet"
+  ],
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
