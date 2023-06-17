@@ -26,12 +26,14 @@ subprojects {
 }
 
 tasks.register("publishMod") {
-    if (project.name == "common")
-        return
-
-    dependsOn("build")
-    dependsOn("build")
-    dependsOn("modrinth")
+    // Fabric
+    dependsOn ":fabric:build"
+    dependsOn ":fabric:publishCurseForge"
+    dependsOn ":fabric:modrinth"
+    // Forge
+    dependsOn ":forge:build"
+    dependsOn ":forge:publishCurseForge"
+    dependsOn ":forge:modrinth"
 }
 
 allprojects {

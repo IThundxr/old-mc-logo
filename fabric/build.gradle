@@ -31,9 +31,10 @@ dependencies {
 
 tasks.register('publishCurseForge', TaskPublishCurseForge) {
     apiToken = findProperty('curseforge_token')
-    projectId = findProperty('curseforge_project')
+    var projectId = findProperty('curseforge_project')
 
     def mainFile = upload(projectId, file("build/libs/oldmclogo-${mod_version}.jar"))
+    mainFile.changelog = "Update"
     mainFile.displayName = "Old MC Logo ${mod_version} Fabric ${minecraft_version}"
     mainFile.addRequirement("fabric-api")
     mainFile.addModLoader("Fabric")
