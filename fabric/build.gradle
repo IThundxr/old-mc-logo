@@ -1,5 +1,9 @@
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
+
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
+    id 'net.darkhax.curseforgegradle' version '1.1.15'
+    id "com.modrinth.minotaur" version "2.+"
 }
 
 architectury {
@@ -23,6 +27,31 @@ dependencies {
 
     // dependencies
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
+}
+
+tasks.register('publishCurseForge', TaskPublishCurseForge) {
+    apiToken = findProperty('curseforge_token')
+    projectId = findProperty('curseforge_project')
+
+    def mainFile = upload(projectId, file("build/libs/oldmclogo-${mod_version}.jar"))
+    mainFile.displayName = "Old MC Logo ${mod_version} Fabric ${minecraft_version}"
+    mainFile.addRequirement("fabric-api")
+    mainFile.addModLoader("Fabric")
+    mainFile.addJavaVersion("Java 17")
+    mainFile.releaseType = "release"
+}
+
+modrinth {
+    token = findProperty("MODRINTH_TOKEN")
+    projectId = findProperty("modrinth_project")
+    versionNumber = "${minecraft_version}-fabric"
+    versionType = "release"
+    uploadFile = file("build/libs/oldmclogo-${mod_version}.jar")
+    gameVersions = [minecraft_version]
+    loaders = ["fabric"]
+    dependencies {
+        required.project "fabric-api"
+    }
 }
 
 processResources {

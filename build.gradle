@@ -25,6 +25,15 @@ subprojects {
     }
 }
 
+tasks.register("publishMod") {
+    if (project.name == "common")
+        return
+
+    dependsOn("build")
+    dependsOn("build")
+    dependsOn("modrinth")
+}
+
 allprojects {
     apply plugin: "java"
     apply plugin: "architectury-plugin"
