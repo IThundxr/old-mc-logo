@@ -1,7 +1,6 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "1.1-SNAPSHOT" apply false
-    id "io.github.juuxel.loom-quiltflower" version "1.+" apply false // Quiltflower, a better decompiler
 }
 
 architectury {
@@ -10,13 +9,9 @@ architectury {
 
 subprojects {
     apply plugin: "dev.architectury.loom"
-    apply plugin: "io.github.juuxel.loom-quiltflower"
 
     loom {
         silentMojangMappingsLicense()
-        runs.configureEach {
-            vmArg("-Dmixin.debug.export=true")
-        }
     }
 
     repositories {
@@ -26,12 +21,7 @@ subprojects {
 
     dependencies {
         minecraft "com.mojang:minecraft:${minecraft_version}"
-        // layered mappings - Mojmap names, parchment and QM docs and parameters
-        mappings(loom.layered {
-            it.mappings("org.quiltmc:quilt-mappings:${minecraft_version}+build.${qm_version}:intermediary-v2")
-            //it.parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
-            it.officialMojangMappings { nameSyntheticMembers = false }
-        })
+        mappings loom.officialMojangMappings()
     }
 }
 

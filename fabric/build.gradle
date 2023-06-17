@@ -20,6 +20,9 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
+
+    // dependencies
+    modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
 }
 
 processResources {
@@ -32,6 +35,7 @@ processResources {
     Map<String, String> properties = Map.of(
             "version", version,
             "fabric_loader_version", fabric_loader_version,
+            "fabric_api_version", fabric_api_version,
             "minecraft_version", minecraft_version
     ) as Map<String, String>
     properties.forEach((k, v) -> inputs.property(k, v))
