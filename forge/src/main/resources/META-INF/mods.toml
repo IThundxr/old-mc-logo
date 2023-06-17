@@ -11,7 +11,7 @@ authors = "IThundxr"
 description = '''
 Brings back the old MC logo!
 '''
-logoFile = "assets/oldmclogo/icon.png"
+logoFile = "icon.png"
 
 [[dependencies.oldmclogo]]
 modId = "forge"

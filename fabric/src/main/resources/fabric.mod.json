@@ -12,7 +12,7 @@
     "sources": "https://github.com/IThundxr/oldmclogo/"
   },
   "license": "BY-NC-SA",
-  "icon": "assets/oldmclogo/icon.png",
+  "icon": "icon.png",
   "environment": "client",
   "entrypoints": {
     "main": [

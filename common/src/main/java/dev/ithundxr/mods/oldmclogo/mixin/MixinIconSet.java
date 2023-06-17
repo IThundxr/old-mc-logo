@@ -1,8 +1,8 @@
 package dev.ithundxr.mods.oldmclogo.mixin;
 
 import com.mojang.blaze3d.platform.IconSet;
+import dev.ithundxr.mods.oldmclogo.OldMCLogo;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackResources;
 import net.minecraft.server.packs.resources.IoSupplier;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,6 +16,6 @@ import java.io.InputStream;
 public class MixinIconSet {
     @Inject(method = "getFile", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private void returnBetterFile(PackResources packResources, String string, CallbackInfoReturnable<IoSupplier<InputStream>> cir, String[] strings, IoSupplier<InputStream> ioSupplier) {
-        cir.setReturnValue(() -> Minecraft.getInstance().getResourceManager().getResourceOrThrow(new ResourceLocation("oldmclogo", string)).open());
+        cir.setReturnValue(() -> Minecraft.getInstance().getResourceManager().getResourceOrThrow(OldMCLogo.asResource(string)).open());
     }
 }
