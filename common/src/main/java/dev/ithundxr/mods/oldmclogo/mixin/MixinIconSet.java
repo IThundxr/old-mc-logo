@@ -5,6 +5,7 @@ import dev.ithundxr.mods.oldmclogo.OldMCLogo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.packs.PackResources;
 import net.minecraft.server.packs.resources.IoSupplier;
+import net.minecraft.server.packs.resources.ResourceManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,6 +17,9 @@ import java.io.InputStream;
 public class MixinIconSet {
     @Inject(method = "getFile", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private void returnBetterFile(PackResources packResources, String string, CallbackInfoReturnable<IoSupplier<InputStream>> cir, String[] strings, IoSupplier<InputStream> ioSupplier) {
-        cir.setReturnValue(() -> Minecraft.getInstance().getResourceManager().getResourceOrThrow(OldMCLogo.asResource(string)).open());
+        // Resource Manager
+        ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
+        // Return old icons
+        cir.setReturnValue(() -> resourceManager.getResourceOrThrow(OldMCLogo.asResource(string)).open());
     }
 }

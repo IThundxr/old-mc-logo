@@ -1,6 +1,7 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "1.1-SNAPSHOT" apply false
+    id "me.shedaniel.unified-publishing" version "0.1.+"  apply false // https://github.com/shedaniel/unified-publishing
 }
 
 architectury {
@@ -23,17 +24,6 @@ subprojects {
         minecraft "com.mojang:minecraft:${minecraft_version}"
         mappings loom.officialMojangMappings()
     }
-}
-
-tasks.register("publishMod") {
-    // Fabric
-    dependsOn ":fabric:build"
-    dependsOn ":fabric:publishCurseForge"
-    dependsOn ":fabric:modrinth"
-    // Forge
-    dependsOn ":forge:build"
-    dependsOn ":forge:publishCurseForge"
-    dependsOn ":forge:modrinth"
 }
 
 allprojects {

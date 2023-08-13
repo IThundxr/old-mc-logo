@@ -29,8 +29,10 @@ public class MixinMinecraft {
     @Inject(method = "<init>", at = @At("RETURN"))
     private void setIcon(GameConfig gameConfig, CallbackInfo ci) {
         try {
+            // Try changing to the old icons
             window.setIcon(vanillaPackResources, IconSet.RELEASE);
         } catch (Exception e) {
+            // Log error if changing wasn't possible
             OldMCLogo.LOGGER.error("Error while trying to set icon...", e);
         }
     }
