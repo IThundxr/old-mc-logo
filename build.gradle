@@ -74,7 +74,6 @@ forgix {
 }
 
 publishMods {
-    dryRun = true
     file = file("build/libs/Merged/$archives_base_name-$mod_version+mc$minecraft_version" + ".jar")
     changelog = ChangelogText.toString()
     type = STABLE
