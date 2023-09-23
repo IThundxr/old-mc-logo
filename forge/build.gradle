@@ -1,6 +1,5 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "8.1.1"
-    id "me.shedaniel.unified-publishing"
 }
 
 architectury {
@@ -23,30 +22,6 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 }
 
-unifiedPublishing {
-    project {
-        releaseType = "release"
-        gameVersions = [minecraft_version]
-        gameLoaders = ["forge"]
-        displayName = "Old MC Logo $mod_version Forge $minecraft_version"
-        mainPublication remapJar
-
-        if (System.getenv("CURSEFORGE_TOKEN")) {
-            curseforge {
-                token = System.getenv("CURSEFORGE_TOKEN")
-                id = project.curseforge_id
-            }
-        }
-
-        if (System.getenv("MODRINTH_TOKEN")) {
-            modrinth {
-                token = System.getenv("MODRINTH_TOKEN")
-                id = project.modrinth_id
-                version = "$mod_version-forge-mc$minecraft_version"
-            }
-        }
-    }
-}
 processResources {
     // include packs
     from(rootProject.file("common/src/main/resources")) {

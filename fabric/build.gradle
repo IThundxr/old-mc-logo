@@ -1,6 +1,5 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "8.1.1"
-    id "me.shedaniel.unified-publishing"
 }
 
 architectury {
@@ -24,37 +23,6 @@ dependencies {
 
     // dependencies
     modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}")
-}
-
-unifiedPublishing {
-    project {
-        releaseType = "release"
-        gameVersions = [minecraft_version]
-        gameLoaders = ["fabric"]
-        displayName = "Old MC Logo $mod_version Fabric $minecraft_version"
-        mainPublication remapJar
-
-        relations {
-            depends {
-                curseforge = modrinth = "fabric-api"
-            }
-        }
-
-        if (System.getenv("CURSEFORGE_TOKEN")) {
-            curseforge {
-                token = System.getenv("CURSEFORGE_TOKEN")
-                id = project.curseforge_id
-            }
-        }
-
-        if (System.getenv("MODRINTH_TOKEN")) {
-            modrinth {
-                token = System.getenv("MODRINTH_TOKEN")
-                id = project.modrinth_id
-                version = "$mod_version-forge-mc$minecraft_version"
-            }
-        }
-    }
 }
 
 processResources {
@@ -103,19 +71,5 @@ sourcesJar {
 components.java {
     withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
         skip()
-    }
-}
-
-publishing {
-    publications {
-        mavenFabric(MavenPublication) {
-            artifactId = archives_base_name + "-" + project.name
-            from components.java
-        }
-    }
-
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-        // Add repositories to publish to here.
     }
 }
