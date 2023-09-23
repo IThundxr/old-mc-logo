@@ -5,12 +5,7 @@ plugins {
     id "dev.architectury.loom" version "1.1-SNAPSHOT" apply false
     id "me.modmuss50.mod-publish-plugin" version "0.3.5"
     id "io.github.pacifistmc.forgix" version "1.2.6"
-    id "dev.ithundxr.silk" version "0.11.9"
-}
-
-silk {
-    displayName = "Old MC Logo"
-    modVersion = mod_version
+    id "dev.ithundxr.silk" version "0.11.15"
 }
 
 architectury {
@@ -42,7 +37,7 @@ allprojects {
 
     archivesBaseName = archives_base_name
     version = mod_version
-    group = rootProject.maven_group
+    group = maven_group
 
     repositories {}
 
@@ -74,7 +69,7 @@ forgix {
 publishMods {
     displayName = "Old MC Logo v$mod_version for mc$minecraft_version"
     file = file("build/libs/Merged/$archives_base_name-$mod_version+mc$minecraft_version" + ".jar")
-    changelog = ChangelogText.toString()
+    changelog = ChangelogText.getChangelogText(project)
     type = STABLE
     modLoaders.add("fabric")
     modLoaders.add("quilt")
