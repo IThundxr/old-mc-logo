@@ -75,6 +75,7 @@ forgix {
 }
 
 publishMods {
+    displayName = "Old MC Logo v$mod_version for mc$minecraft_version"
     file = file("build/libs/Merged/$archives_base_name-$mod_version+mc$minecraft_version" + ".jar")
     changelog = ChangelogText.toString()
     type = STABLE
