@@ -57,6 +57,7 @@ allprojects {
 }
 
 tasks.mergeJars.dependsOn(tasks.build)
+tasks.publishMods.dependsOn(tasks.mergeJars)
 
 forgix {
     group = maven_group
