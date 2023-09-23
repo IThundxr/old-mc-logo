@@ -56,9 +56,6 @@ allprojects {
     }
 }
 
-tasks.mergeJars.dependsOn(tasks.build)
-tasks.publishMods.dependsOn(tasks.mergeJars)
-
 forgix {
     group = maven_group
     mergedJarName = "$archives_base_name-$mod_version+mc$minecraft_version" + ".jar"
