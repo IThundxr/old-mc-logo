@@ -1,7 +1,7 @@
 import dev.ithundxr.silk.ChangelogText
 
 plugins {
-    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "architectury-plugin" version "3.4.151"
     id "dev.architectury.loom" version "1.4-SNAPSHOT" apply false
     id "me.modmuss50.mod-publish-plugin" version "0.4.5"
     id "io.github.pacifistmc.forgix" version "1.2.6"
