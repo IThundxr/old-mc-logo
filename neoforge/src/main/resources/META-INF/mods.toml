@@ -1,5 +1,5 @@
 modLoader = "lowcodefml"
-loaderVersion = "[${forge_version},)"
+loaderVersion = "[${neoforge_version},)"
 issueTrackerURL = "https://github.com/IThundxr/oldmclogo/issues"
 license = "BY-NC-SA"
 
@@ -17,9 +17,9 @@ logoFile = "icon.png"
 config = "oldmclogo-common.mixins.json"
 
 [[dependencies.oldmclogo]]
-modId = "forge"
+modId = "neoforge"
 mandatory = true
-versionRange = "[${forge_version},)"
+versionRange = "[${neoforge_version},)"
 ordering = "NONE"
 side = "CLIENT"
 
