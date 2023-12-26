@@ -1,5 +1,5 @@
 modLoader = "lowcodefml"
-loaderVersion = "[${forge_version},)"
+loaderVersion = "[${neoforge_version},)"
 issueTrackerURL = "https://github.com/IThundxr/oldmclogo/issues"
 license = "BY-NC-SA"
 
