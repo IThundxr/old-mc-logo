@@ -4,7 +4,7 @@ plugins {
 
 architectury {
     platformSetupLoomIde()
-    forge()
+    neoForge()
 }
 
 configurations {
@@ -12,14 +12,18 @@ configurations {
     shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
-    developmentForge.extendsFrom common
+    developmentNeoForge.extendsFrom common
+}
+
+repositories {
+    maven { url = "https://maven.neoforged.net/releases/" }
 }
 
 dependencies {
-    forge "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    neoForge "net.neoforged:neoforge:${neoforge_version}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
-    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive false }
 }
 
 processResources {
@@ -31,7 +35,7 @@ processResources {
     // set up properties for filling into metadata
     Map<String, String> properties = Map.of(
             "version", version,
-            "forge_version", forge_version.split("\\.")[0], // only specify major version of forge
+            "neoforge_version", neoforge_version.split("\\.")[0], // only specify major version of forge
             "minecraft_version", minecraft_version,
     ) as Map<String, String>
     properties.forEach((k, v) -> inputs.property(k, v))

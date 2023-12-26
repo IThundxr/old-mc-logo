@@ -1,4 +1,4 @@
-modLoader = "javafml"
+modLoader = "lowcodefml"
 loaderVersion = "[${forge_version},)"
 issueTrackerURL = "https://github.com/IThundxr/oldmclogo/issues"
 license = "BY-NC-SA"
@@ -12,6 +12,9 @@ description = '''
 Brings back the old MC logo!
 '''
 logoFile = "icon.png"
+
+[[mixins]]
+config = "oldmclogo-common.mixins.json"
 
 [[dependencies.oldmclogo]]
 modId = "forge"
