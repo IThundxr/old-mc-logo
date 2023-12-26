@@ -51,7 +51,7 @@ forgix {
     mergedJarName = "$archives_base_name-$mod_version+mc$minecraft_version" + ".jar"
     outputDir = "build/libs/Merged"
 
-    forge {
+    custom {
         projectName = "neoforge"
         jarLocation = "build/libs/$archives_base_name-$mod_version" + ".jar"
     }
