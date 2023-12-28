@@ -3,7 +3,7 @@ import dev.ithundxr.silk.ChangelogText
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "1.4-SNAPSHOT" apply false
-    id "me.modmuss50.mod-publish-plugin" version "0.3.5"
+    id "me.modmuss50.mod-publish-plugin" version "0.4.5"
     id "io.github.pacifistmc.forgix" version "1.2.6"
     id "dev.ithundxr.silk" version "0.11.16"
 }
@@ -53,17 +53,18 @@ forgix {
 
     fabric {
         projectName = "fabric"
-        jarLocation = "build/libs/${archives_base_name}-${mod_version}" + ".jar"
+        jarLocation = "build/libs/${archives_base_name}-${mod_version}.jar"
     }
 
     custom {
         projectName = "neoforge"
-        jarLocation = "build/libs/${archives_base_name}-${mod_version}" + ".jar"
+        jarLocation = "build/libs/${archives_base_name}-${mod_version}.jar"
     }
 }
 
 publishMods {
     displayName = "Old MC Logo v${mod_version} for mc${minecraft_version}"
+    version = "${mod_version}-mc${minecraft_version}"
     file = file("build/libs/Merged/${archives_base_name}-${mod_version}+mc${minecraft_version}.jar")
     changelog = ChangelogText.getChangelogText(project)
     type = STABLE
