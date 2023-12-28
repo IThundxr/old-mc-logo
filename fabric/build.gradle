@@ -1,5 +1,6 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "8.1.1"
+    id "me.modmuss50.mod-publish-plugin"
 }
 
 architectury {
@@ -71,5 +72,27 @@ sourcesJar {
 components.java {
     withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
         skip()
+    }
+}
+
+publishMods {
+    displayName = "Old MC Logo v${mod_version} Fabric for mc${minecraft_version}"
+    version = "${mod_version}-fabric-mc${minecraft_version}"
+    file = remapJar.archiveFile
+    changelog = getChangelogText()
+    type = STABLE
+    modLoaders.add("fabric")
+    modLoaders.add("quilt")
+
+    curseforge {
+        projectId = curseforge_id
+        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+        minecraftVersions.add(minecraft_version)
+    }
+
+    modrinth {
+        projectId = modrinth_id
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+        minecraftVersions.add(minecraft_version)
     }
 }

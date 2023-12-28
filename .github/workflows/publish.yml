@@ -23,4 +23,4 @@ jobs:
         env:
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
-        run: ./gradlew :fabric:build :neoforge:build mergeJars publishMods
+        run: ./gradlew :fabric:build :neoforge:build :fabric:publishMods :neoforge:publishMods
