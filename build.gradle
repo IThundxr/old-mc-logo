@@ -48,23 +48,23 @@ allprojects {
 
 forgix {
     group = maven_group
-    mergedJarName = "$archives_base_name-$mod_version+mc$minecraft_version" + ".jar"
+    mergedJarName = "${archives_base_name}-${mod_version}+mc${minecraft_version}.jar"
     outputDir = "build/libs/Merged"
-
-    custom {
-        projectName = "neoforge"
-        jarLocation = "build/libs/$archives_base_name-$mod_version" + ".jar"
-    }
 
     fabric {
         projectName = "fabric"
-        jarLocation = "build/libs/$archives_base_name-$mod_version" + ".jar"
+        jarLocation = "build/libs/${archives_base_name}-${mod_version}" + ".jar"
+    }
+
+    custom {
+        projectName = "neoforge"
+        jarLocation = "build/libs/${archives_base_name}-${mod_version}" + ".jar"
     }
 }
 
 publishMods {
-    displayName = "Old MC Logo v$mod_version for mc$minecraft_version"
-    file = file("build/libs/Merged/$archives_base_name-$mod_version+mc$minecraft_version" + ".jar")
+    displayName = "Old MC Logo v${mod_version} for mc${minecraft_version}"
+    file = file("build/libs/Merged/${archives_base_name}-${mod_version}+mc${minecraft_version}.jar")
     changelog = ChangelogText.getChangelogText(project)
     type = STABLE
     modLoaders.add("fabric")
