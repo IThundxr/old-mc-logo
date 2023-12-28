@@ -3,7 +3,7 @@ import dev.ithundxr.silk.ChangelogText
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "1.4-SNAPSHOT" apply false
-    id "me.modmuss50.mod-publish-plugin" version "0.4.5"
+    id "me.modmuss50.mod-publish-plugin" version "0.4.5" apply false // https://github.com/modmuss50/mod-publish-plugin
     id "io.github.pacifistmc.forgix" version "1.2.6"
     id "dev.ithundxr.silk" version "0.11.16"
 }
@@ -46,41 +46,6 @@ allprojects {
     }
 }
 
-forgix {
-    group = maven_group
-    mergedJarName = "${archives_base_name}-${mod_version}+mc${minecraft_version}.jar"
-    outputDir = "build/libs/Merged"
-
-    fabric {
-        projectName = "fabric"
-        jarLocation = "build/libs/${archives_base_name}-${mod_version}.jar"
-    }
-
-    custom {
-        projectName = "neoforge"
-        jarLocation = "build/libs/${archives_base_name}-${mod_version}.jar"
-    }
-}
-
-publishMods {
-    displayName = "Old MC Logo v${mod_version} for mc${minecraft_version}"
-    version = "${mod_version}-mc${minecraft_version}"
-    file = file("build/libs/Merged/${archives_base_name}-${mod_version}+mc${minecraft_version}.jar")
-    changelog = ChangelogText.getChangelogText(project)
-    type = STABLE
-    modLoaders.add("fabric")
-    modLoaders.add("quilt")
-    modLoaders.add("neoforge")
-
-    curseforge {
-        projectId = curseforge_id
-        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
-        minecraftVersions.add(minecraft_version)
-    }
-
-    modrinth {
-        projectId = modrinth_id
-        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
-        minecraftVersions.add(minecraft_version)
-    }
+String getChangelogText() {
+    return ChangelogText.getChangelogText(project)
 }

@@ -1,5 +1,8 @@
+import dev.ithundxr.silk.ChangelogText
+
 plugins {
     id "com.github.johnrengelman.shadow" version "8.1.1"
+    id "me.modmuss50.mod-publish-plugin"
 }
 
 architectury {
@@ -74,16 +77,23 @@ components.java {
     }
 }
 
-publishing {
-    publications {
-        mavenForge(MavenPublication) {
-            artifactId = archives_base_name + "-" + project.name
-            from components.java
-        }
+publishMods {
+    displayName = "Old MC Logo v${mod_version} NeoForge for mc${minecraft_version}"
+    version = "${mod_version}-neoforge-mc${minecraft_version}"
+    file = remapJar.archiveFile
+    changelog = getChangelogText()
+    type = STABLE
+    modLoaders.add("neoforge")
+
+    curseforge {
+        projectId = curseforge_id
+        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+        minecraftVersions.add(minecraft_version)
     }
 
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-        // Add repositories to publish to here.
+    modrinth {
+        projectId = modrinth_id
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+        minecraftVersions.add(minecraft_version)
     }
 }
